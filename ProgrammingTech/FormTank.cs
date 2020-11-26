@@ -12,7 +12,7 @@ namespace ProgrammingTech
 {
 	public partial class FormTank : Form
 	{
-		private ITransport vehicle;
+		private ITransport tank;
 
 		public FormTank()
 		{
@@ -21,7 +21,7 @@ namespace ProgrammingTech
 
 		public void SetCar(ITransport vehicle)
 		{
-			this.vehicle = vehicle;
+			this.tank = vehicle;
 			Draw();
 		}
 
@@ -29,23 +29,23 @@ namespace ProgrammingTech
 		{
 			Bitmap bmp = new Bitmap(pictureTank.Width, pictureTank.Height);
 			Graphics gr = Graphics.FromImage(bmp);
-			vehicle?.DrawTransport(gr);
+			tank?.DrawTransport(gr);
 			pictureTank.Image = bmp;
 		}
 
-		private void buttonCreateArmoredVehicle_Click(object sender, EventArgs e)
+		private void buttonCreate_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			vehicle = new ArmoredVehicle(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green);
-			vehicle.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
+			tank = new ArmoredVehicle(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green);
+			tank.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
 			Draw();
 		}
 
 		private void buttonCreateTank_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			vehicle = new Tank(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green, Color.DarkGreen, true, true);
-			vehicle.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
+			tank = new Tank(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green, Color.DarkGreen, true, true);
+			tank.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
 			Draw();
 		}
 
@@ -55,19 +55,21 @@ namespace ProgrammingTech
 			switch (name)
 			{
 				case "buttonUp":
-					vehicle?.MoveTransport(Direction.Up);
+					tank?.MoveTransport(Direction.Up);
 					break;
 				case "buttonDown":
-					vehicle?.MoveTransport(Direction.Down);
+					tank?.MoveTransport(Direction.Down);
 					break;
 				case "buttonRight":
-					vehicle?.MoveTransport(Direction.Right);
+					tank?.MoveTransport(Direction.Right);
 					break;
 				case "buttonLeft":
-					vehicle?.MoveTransport(Direction.Left);
+					tank?.MoveTransport(Direction.Left);
 					break;
 			}
 			Draw();
 		}
+
+	
 	}
 }
