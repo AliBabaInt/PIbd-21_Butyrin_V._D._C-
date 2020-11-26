@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	public class ArmoredVehicle : Vehicle
+	class ArmoredVehicle : Vehicle
 	{
-		protected readonly int vehicleWidth = 100;
-		protected readonly int vehicleHeight = 60;
-
+		protected readonly int carWidth = 100;
+		protected readonly int carHeight = 60;
 
 		public ArmoredVehicle(int maxSpeed, float weight, Color mainColor)
 		{
@@ -20,23 +19,23 @@ namespace ProgrammingTech
 			MainColor = mainColor;
 		}
 
-		protected ArmoredVehicle(int maxSpeed, float weight, Color mainColor, int vehicleWidth, int vehicleHeight)
+		protected ArmoredVehicle(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
 		{
 			MaxSpeed = maxSpeed;
 			Weight = weight;
 			MainColor = mainColor;
-			this.vehicleWidth = vehicleWidth;
-			this.vehicleHeight = vehicleHeight;
+			this.carWidth = carWidth;
+			this.carHeight = carHeight;
 		}
 
-		public override void MoveTransport(Direction direction)
-		{
+        public override void MoveTransport(Direction direction)
+        {
 			float step = MaxSpeed * 100 / Weight;
 
 			switch (direction)
 			{
 				case Direction.Right:
-					if (_startPosX + step < _pictureWidth - vehicleWidth)
+					if (_startPosX + step < _pictureWidth - carWidth)
 					{
 						_startPosX += step;
 					}
@@ -54,7 +53,7 @@ namespace ProgrammingTech
 					}
 					break;
 				case Direction.Down:
-					if (_startPosY + step < _pictureHeight - vehicleHeight)
+					if (_startPosY + step < _pictureHeight - carHeight)
 					{
 						_startPosY += step;
 					}
@@ -67,15 +66,16 @@ namespace ProgrammingTech
 			Pen pen = new Pen(Color.Black);
 
 			Brush tank = new SolidBrush(MainColor);
-			g.FillRectangle(tank, _startPosX, _startPosY + 20, vehicleWidth, 35);
+			g.FillRectangle(tank, _startPosX, _startPosY + 20, carWidth, 35);
 
 			Brush wheel = new SolidBrush(Color.Black);
-			g.FillEllipse(wheel, _startPosX + 2, _startPosY + vehicleHeight - 15, 15, 15);
-			g.FillEllipse(wheel, _startPosX + 22, _startPosY + vehicleHeight - 15, 15, 15);
-			g.FillEllipse(wheel, _startPosX + 42, _startPosY + vehicleHeight - 15, 15, 15);
-			g.FillEllipse(wheel, _startPosX + 62, _startPosY + vehicleHeight - 15, 15, 15);
-			g.FillEllipse(wheel, _startPosX + 82, _startPosY + vehicleHeight - 15, 15, 15);
+			g.FillEllipse(wheel, _startPosX + 2, _startPosY + carHeight - 15, 15, 15);
+			g.FillEllipse(wheel, _startPosX + 22, _startPosY + carHeight - 15, 15, 15);
+			g.FillEllipse(wheel, _startPosX + 42, _startPosY + carHeight - 15, 15, 15);
+			g.FillEllipse(wheel, _startPosX + 62, _startPosY + carHeight - 15, 15, 15);
+			g.FillEllipse(wheel, _startPosX + 82, _startPosY + carHeight - 15, 15, 15);
 		}
+
+
 	}
 }
-

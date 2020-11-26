@@ -8,22 +8,20 @@ using System.Drawing;
 namespace ProgrammingTech
 {
 	class Tank : ArmoredVehicle
-	{	
+	{
+
 		public Color SecColor { private set; get; }
 
 		public bool Tower { private set; get; }
 		public bool Camo { private set; get;}
 
 		public Tank(int maxSpeed, float weight, Color mainColor, Color secColor, bool tower, bool camo) : base(maxSpeed, weight, mainColor, 100, 60)
-
 		{
-			MaxSpeed = maxSpeed;
-			Weight = weight;
-			MainColor = mainColor;
 			SecColor = secColor;
 			Tower = tower;
 			Camo = camo;
 		}
+
 
 		public override void DrawTransport(Graphics g)
 		{
@@ -34,7 +32,7 @@ namespace ProgrammingTech
 				Brush tower = new SolidBrush(MainColor);
 				g.FillEllipse(tower, _startPosX + 20, _startPosY, 60, 40);
 
-				g.FillRectangle(tower, _startPosX + vehicleWidth / 2, _startPosY + 5, vehicleWidth / 2, 5);
+				g.FillRectangle(tower, _startPosX + carWidth / 2, _startPosY + 5, carWidth / 2, 5);
 			}
 
 			if (Camo)
