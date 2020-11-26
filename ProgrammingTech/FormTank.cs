@@ -19,11 +19,17 @@ namespace ProgrammingTech
 			InitializeComponent();
 		}
 
+		public void SetCar(ITransport vehicle)
+		{
+			this.vehicle = vehicle;
+			Draw();
+		}
+
 		private void Draw()
 		{
 			Bitmap bmp = new Bitmap(pictureTank.Width, pictureTank.Height);
 			Graphics gr = Graphics.FromImage(bmp);
-			vehicle.DrawTransport(gr);
+			vehicle?.DrawTransport(gr);
 			pictureTank.Image = bmp;
 		}
 
@@ -49,16 +55,16 @@ namespace ProgrammingTech
 			switch (name)
 			{
 				case "buttonUp":
-					vehicle.MoveTransport(Direction.Up);
+					vehicle?.MoveTransport(Direction.Up);
 					break;
 				case "buttonDown":
-					vehicle.MoveTransport(Direction.Down);
+					vehicle?.MoveTransport(Direction.Down);
 					break;
 				case "buttonRight":
-					vehicle.MoveTransport(Direction.Right);
+					vehicle?.MoveTransport(Direction.Right);
 					break;
 				case "buttonLeft":
-					vehicle.MoveTransport(Direction.Left);
+					vehicle?.MoveTransport(Direction.Left);
 					break;
 			}
 			Draw();
