@@ -29,8 +29,6 @@
 		private void InitializeComponent()
 		{
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
-            this.buttonArmoredVehicle = new System.Windows.Forms.Button();
-            this.buttonTank = new System.Windows.Forms.Button();
             this.groupBoxTake = new System.Windows.Forms.GroupBox();
             this.buttonTake = new System.Windows.Forms.Button();
             this.maskedTextBoxPlace = new System.Windows.Forms.MaskedTextBox();
@@ -40,6 +38,7 @@
             this.buttonAddParking = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.textBoxLevel = new System.Windows.Forms.TextBox();
+            this.buttonAddVehicle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBoxTake.SuspendLayout();
             this.SuspendLayout();
@@ -53,37 +52,13 @@
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
             // 
-            // buttonArmoredVehicle
-            // 
-            this.buttonArmoredVehicle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonArmoredVehicle.Location = new System.Drawing.Point(796, 255);
-            this.buttonArmoredVehicle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonArmoredVehicle.Name = "buttonArmoredVehicle";
-            this.buttonArmoredVehicle.Size = new System.Drawing.Size(139, 55);
-            this.buttonArmoredVehicle.TabIndex = 1;
-            this.buttonArmoredVehicle.Text = "Припарковать БТР";
-            this.buttonArmoredVehicle.UseVisualStyleBackColor = true;
-            this.buttonArmoredVehicle.Click += new System.EventHandler(this.buttonArmoredVehicle_Click);
-            // 
-            // buttonTank
-            // 
-            this.buttonTank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTank.Location = new System.Drawing.Point(796, 317);
-            this.buttonTank.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.buttonTank.Name = "buttonTank";
-            this.buttonTank.Size = new System.Drawing.Size(139, 55);
-            this.buttonTank.TabIndex = 2;
-            this.buttonTank.Text = "Припарковать танк";
-            this.buttonTank.UseVisualStyleBackColor = true;
-            this.buttonTank.Click += new System.EventHandler(this.buttonTank_Click);
-            // 
             // groupBoxTake
             // 
             this.groupBoxTake.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxTake.Controls.Add(this.buttonTake);
             this.groupBoxTake.Controls.Add(this.maskedTextBoxPlace);
             this.groupBoxTake.Controls.Add(this.labelPlace);
-            this.groupBoxTake.Location = new System.Drawing.Point(796, 380);
+            this.groupBoxTake.Location = new System.Drawing.Point(780, 380);
             this.groupBoxTake.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBoxTake.Name = "groupBoxTake";
             this.groupBoxTake.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -126,7 +101,7 @@
             this.listBoxParking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxParking.FormattingEnabled = true;
             this.listBoxParking.ItemHeight = 15;
-            this.listBoxParking.Location = new System.Drawing.Point(796, 102);
+            this.listBoxParking.Location = new System.Drawing.Point(780, 102);
             this.listBoxParking.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.listBoxParking.Name = "listBoxParking";
             this.listBoxParking.Size = new System.Drawing.Size(137, 109);
@@ -137,7 +112,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(834, 14);
+            this.label1.Location = new System.Drawing.Point(818, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 15);
@@ -147,7 +122,7 @@
             // buttonAddParking
             // 
             this.buttonAddParking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAddParking.Location = new System.Drawing.Point(795, 62);
+            this.buttonAddParking.Location = new System.Drawing.Point(779, 62);
             this.buttonAddParking.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonAddParking.Name = "buttonAddParking";
             this.buttonAddParking.Size = new System.Drawing.Size(139, 27);
@@ -159,7 +134,7 @@
             // buttonDelete
             // 
             this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDelete.Location = new System.Drawing.Point(795, 218);
+            this.buttonDelete.Location = new System.Drawing.Point(779, 218);
             this.buttonDelete.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(139, 27);
@@ -171,25 +146,35 @@
             // textBoxLevel
             // 
             this.textBoxLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLevel.Location = new System.Drawing.Point(796, 32);
+            this.textBoxLevel.Location = new System.Drawing.Point(780, 32);
             this.textBoxLevel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxLevel.Name = "textBoxLevel";
             this.textBoxLevel.Size = new System.Drawing.Size(137, 23);
             this.textBoxLevel.TabIndex = 8;
             // 
+            // buttonAddVehicle
+            // 
+            this.buttonAddVehicle.Location = new System.Drawing.Point(779, 307);
+            this.buttonAddVehicle.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonAddVehicle.Name = "buttonAddVehicle";
+            this.buttonAddVehicle.Size = new System.Drawing.Size(138, 67);
+            this.buttonAddVehicle.TabIndex = 10;
+            this.buttonAddVehicle.Text = "Добавить технику";
+            this.buttonAddVehicle.UseVisualStyleBackColor = true;
+            this.buttonAddVehicle.Click += new System.EventHandler(this.buttonAddVehicle_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 519);
+            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.buttonAddVehicle);
             this.Controls.Add(this.textBoxLevel);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAddParking);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxParking);
             this.Controls.Add(this.groupBoxTake);
-            this.Controls.Add(this.buttonTank);
-            this.Controls.Add(this.buttonArmoredVehicle);
             this.Controls.Add(this.pictureBoxParking);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormParking";
@@ -205,8 +190,6 @@
 		#endregion
 
 		private System.Windows.Forms.PictureBox pictureBoxParking;
-		private System.Windows.Forms.Button buttonArmoredVehicle;
-		private System.Windows.Forms.Button buttonTank;
 		private System.Windows.Forms.GroupBox groupBoxTake;
 		private System.Windows.Forms.MaskedTextBox maskedTextBoxPlace;
 		private System.Windows.Forms.Label labelPlace;
@@ -216,5 +199,6 @@
 		private System.Windows.Forms.Button buttonAddParking;
 		private System.Windows.Forms.Button buttonDelete;
 		private System.Windows.Forms.TextBox textBoxLevel;
+		private System.Windows.Forms.Button buttonAddVehicle;
 	}
 }

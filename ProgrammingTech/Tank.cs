@@ -45,5 +45,10 @@ namespace ProgrammingTech
 			}
 		}
 
+		public void SetSecColor(Color color)
+		{
+			SecColor = color;
+		}
+
 	}
 }

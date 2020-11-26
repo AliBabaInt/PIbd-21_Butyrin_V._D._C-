@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	class ArmoredVehicle : Vehicle
+	public class ArmoredVehicle : Vehicle
 	{
 		protected readonly int carWidth = 100;
 		protected readonly int carHeight = 60;
