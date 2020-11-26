@@ -12,7 +12,7 @@ namespace ProgrammingTech
 {
 	public partial class FormTank : Form
 	{
-		private Tank tank;
+		private ITransport vehicle;
 
 		public FormTank()
 		{
@@ -23,15 +23,23 @@ namespace ProgrammingTech
 		{
 			Bitmap bmp = new Bitmap(pictureTank.Width, pictureTank.Height);
 			Graphics gr = Graphics.FromImage(bmp);
-			tank.DrawTransport(gr);
+			vehicle.DrawTransport(gr);
 			pictureTank.Image = bmp;
 		}
 
-		private void buttonCreate_Click(object sender, EventArgs e)
+		private void buttonCreateArmoredVehicle_Click(object sender, EventArgs e)
 		{
 			Random rnd = new Random();
-			tank = new Tank(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green, Color.DarkGreen, true, true);
-			tank.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
+			vehicle = new ArmoredVehicle(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green);
+			vehicle.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
+			Draw();
+		}
+
+		private void buttonCreateTank_Click(object sender, EventArgs e)
+		{
+			Random rnd = new Random();
+			vehicle = new Tank(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Green, Color.DarkGreen, true, true);
+			vehicle.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureTank.Width, pictureTank.Height);
 			Draw();
 		}
 
@@ -41,16 +49,16 @@ namespace ProgrammingTech
 			switch (name)
 			{
 				case "buttonUp":
-					tank.MoveTransport(Direction.Up);
+					vehicle.MoveTransport(Direction.Up);
 					break;
 				case "buttonDown":
-					tank.MoveTransport(Direction.Down);
+					vehicle.MoveTransport(Direction.Down);
 					break;
 				case "buttonRight":
-					tank.MoveTransport(Direction.Right);
+					vehicle.MoveTransport(Direction.Right);
 					break;
 				case "buttonLeft":
-					tank.MoveTransport(Direction.Left);
+					vehicle.MoveTransport(Direction.Left);
 					break;
 			}
 			Draw();
