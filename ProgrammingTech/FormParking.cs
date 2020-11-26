@@ -138,5 +138,27 @@ namespace ProgrammingTech
 		{
 			Draw();
 		}
+
+		private void buttonAddVehicle_Click(object sender, EventArgs e)
+		{
+			var formVehicleConfig = new FormVehicleConfig();
+			formVehicleConfig.AddEvent(AddVehicle);
+			formVehicleConfig.Show();
+		}
+
+		private void AddVehicle(Vehicle vehicle)
+		{
+			if (vehicle != null && listBoxParking.SelectedIndex > -1)
+			{
+				if ((parkingCollection[listBoxParking.SelectedItem.ToString()]) + vehicle)
+				{
+					Draw();
+				}
+				else
+				{
+					MessageBox.Show("Транспорт не удалось поставить");
+				}
+			}
+		}
 	}
 }
