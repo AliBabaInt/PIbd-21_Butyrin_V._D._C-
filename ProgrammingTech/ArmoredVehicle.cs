@@ -7,16 +7,29 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	public class ArmoredVehicle : Vehicle
+	class ArmoredVehicle : Vehicle
 	{
 		protected readonly int carWidth = 100;
 		protected readonly int carHeight = 60;
+
+		protected readonly char separator = ';';
 
 		public ArmoredVehicle(int maxSpeed, float weight, Color mainColor)
 		{
 			MaxSpeed = maxSpeed;
 			Weight = weight;
 			MainColor = mainColor;
+		}
+
+		public ArmoredVehicle(string info)
+		{
+			string[] strs = info.Split(separator);
+			if (strs.Length == 3)
+			{
+				MaxSpeed = Convert.ToInt32(strs[0]);
+				Weight = Convert.ToInt32(strs[1]);
+				MainColor = Color.FromName(strs[2]);
+			}
 		}
 
 		protected ArmoredVehicle(int maxSpeed, float weight, Color mainColor, int carWidth, int carHeight)
@@ -76,6 +89,9 @@ namespace ProgrammingTech
 			g.FillEllipse(wheel, _startPosX + 82, _startPosY + carHeight - 15, 15, 15);
 		}
 
-
+		public override string ToString()
+		{
+			return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
+		}
 	}
 }

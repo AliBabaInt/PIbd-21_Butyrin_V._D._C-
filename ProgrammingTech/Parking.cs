@@ -36,8 +36,6 @@ namespace ProgrammingTech
 			}
 			p._places.Add(vehicle);
 			return true;
-			//p._places[i].SetPosition(i / (p.pictureHeight / p._placeSizeHeight) * p._placeSizeWidth + 5, i % (p.pictureHeight / p._placeSizeHeight) * p._placeSizeHeight + 10, p.pictureWidth, p.pictureHeight);
-
 		}
 
 		public static T operator -(Parking<T> p, int index)
@@ -49,7 +47,6 @@ namespace ProgrammingTech
 			T vehicle = p._places[index];
 			p._places.RemoveAt(index);
 			return vehicle;
-
 		}
 
 		public void Draw(Graphics g)
@@ -57,8 +54,7 @@ namespace ProgrammingTech
 			DrawMarking(g);
 			for (int i = 0; i < _places.Count; ++i)
 			{
-				_places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 *
-			   _placeSizeHeight + 15, pictureWidth, pictureHeight);
+				_places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 * _placeSizeHeight + 15, pictureWidth, pictureHeight);
 				_places[i].DrawTransport(g);
 			}
 
@@ -75,6 +71,15 @@ namespace ProgrammingTech
 				}
 				g.DrawLine(pen, i * _placeSizeWidth, 0, i * _placeSizeWidth, (pictureHeight / _placeSizeHeight) * _placeSizeHeight);
 			}
+		}
+
+		public T GetNext(int index)
+		{
+			if (index < 0 || index >= _places.Count)
+			{
+				return null;
+			}
+			return _places[index];
 		}
 	}
 }

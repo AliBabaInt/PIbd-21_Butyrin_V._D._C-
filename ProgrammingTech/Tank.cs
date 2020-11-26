@@ -22,6 +22,19 @@ namespace ProgrammingTech
 			Camo = camo;
 		}
 
+		public Tank(string info) : base(info)
+		{
+			string[] strs = info.Split(separator);
+			if (strs.Length == 6)
+			{
+				MaxSpeed = Convert.ToInt32(strs[0]);
+				Weight = Convert.ToInt32(strs[1]);
+				MainColor = Color.FromName(strs[2]);
+				SecColor = Color.FromName(strs[3]);
+				Tower = Convert.ToBoolean(strs[4]);
+				Camo = Convert.ToBoolean(strs[5]);
+			}
+		}
 
 		public override void DrawTransport(Graphics g)
 		{
@@ -48,6 +61,11 @@ namespace ProgrammingTech
 		public void SetSecColor(Color color)
 		{
 			SecColor = color;
+		}
+
+		public override string ToString()
+		{
+			return $"{base.ToString()}{separator}{SecColor.Name}{separator}{Tower}{separator}{Camo}";
 		}
 
 	}
