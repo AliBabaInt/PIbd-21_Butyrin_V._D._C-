@@ -30,10 +30,8 @@ namespace ProgrammingTech
 			if (Tower)
 			{
 				Brush tower = new SolidBrush(MainColor);
-				//g.DrawEllipse(pen, _startPosX + 20, _startPosY, 60, 40);
 				g.FillEllipse(tower, _startPosX + 20, _startPosY, 60, 40);
 
-				//g.DrawRectangle(pen, _startPosX + tankWidth / 2, _startPosY + 5, tankWidth / 2, 5);
 				g.FillRectangle(tower, _startPosX + carWidth / 2, _startPosY + 5, carWidth / 2, 5);
 			}
 
