@@ -36,7 +36,6 @@ namespace ProgrammingTech
 			}
 			p._places.Add(vehicle);
 			return true;
-			//p._places[i].SetPosition(i / (p.pictureHeight / p._placeSizeHeight) * p._placeSizeWidth + 5, i % (p.pictureHeight / p._placeSizeHeight) * p._placeSizeHeight + 10, p.pictureWidth, p.pictureHeight);
 
 		}
 
