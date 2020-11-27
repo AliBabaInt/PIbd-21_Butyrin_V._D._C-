@@ -1,6 +1,6 @@
 ﻿namespace ProgrammingTech
 {
-	partial class FormParking
+	partial class FormBase
 	{
 		/// <summary>
 		/// Required designer variable.
