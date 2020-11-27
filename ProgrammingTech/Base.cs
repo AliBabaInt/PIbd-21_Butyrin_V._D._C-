@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	public class Parking<T> where T : class, ITransport
+	public class Base<T> where T : class, ITransport
 	{
 		private readonly List<T> _places;
 		private readonly int _maxCount;
@@ -18,7 +18,7 @@ namespace ProgrammingTech
 		private readonly int _placeSizeWidth = 210;
 		private readonly int _placeSizeHeight = 80;
 
-		public Parking(int picWidth, int picHeight)
+		public Base(int picWidth, int picHeight)
 		{
 			int width = picWidth / _placeSizeWidth;
 			int height = picHeight / _placeSizeHeight;
@@ -28,21 +28,21 @@ namespace ProgrammingTech
 			pictureHeight = picHeight;
 		}
 
-		public static bool operator +(Parking<T> p, T vehicle)
+		public static bool operator +(Base<T> p, T vehicle)
 		{
 			if (p._places.Count >= p._maxCount)
 			{
-				return false;
+				throw new BaseOverflowException();
 			}
 			p._places.Add(vehicle);
 			return true;
 		}
 
-		public static T operator -(Parking<T> p, int index)
+		public static T operator -(Base<T> p, int index)
 		{
 			if (index < -1 || index > p._places.Count)
 			{
-				return null;
+				throw new BaseNotFoundException(index);
 			}
 			T vehicle = p._places[index];
 			p._places.RemoveAt(index);
@@ -54,7 +54,7 @@ namespace ProgrammingTech
 			DrawMarking(g);
 			for (int i = 0; i < _places.Count; ++i)
 			{
-				_places[i].SetPosition(5 + i / 5 * _placeSizeWidth + 5, i % 5 * _placeSizeHeight + 15, pictureWidth, pictureHeight);
+				_places[i].SetPosition(5 + i / 6 * _placeSizeWidth + 5, i % 6 * _placeSizeHeight + 15, pictureWidth, pictureHeight);
 				_places[i].DrawTransport(g);
 			}
 

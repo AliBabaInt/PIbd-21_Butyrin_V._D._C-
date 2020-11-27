@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	public class ParkingCollection
+	public class BaseCollection
 	{
-		readonly Dictionary<string, Parking<Vehicle>> parkingStages;
+		readonly Dictionary<string, Base<Vehicle>> parkingStages;
 
 		public List<string> Keys => parkingStages.Keys.ToList();
 
@@ -18,9 +18,9 @@ namespace ProgrammingTech
 
 		private readonly char separator = ':';
 
-		public ParkingCollection(int pictureWidth, int pictureHeight)
+		public BaseCollection(int pictureWidth, int pictureHeight)
 		{
-			parkingStages = new Dictionary<string, Parking<Vehicle>>();
+			parkingStages = new Dictionary<string, Base<Vehicle>>();
 			this.pictureWidth = pictureWidth;
 			this.pictureHeight = pictureHeight;
 		}
@@ -31,7 +31,7 @@ namespace ProgrammingTech
 			{
 				return;
 			}
-			parkingStages.Add(name, new Parking<Vehicle>(pictureWidth, pictureHeight));
+			parkingStages.Add(name, new Base<Vehicle>(pictureWidth, pictureHeight));
 		}
 
 		public void DelParking(string name)
@@ -51,7 +51,7 @@ namespace ProgrammingTech
 			}
 		}
 
-		public Parking<Vehicle> this[string ind]
+		public Base<Vehicle> this[string ind]
 		{
 			get
 			{
@@ -63,7 +63,7 @@ namespace ProgrammingTech
 			}
 		}
 
-		public bool SaveData(string filename)
+		public void SaveData(string filename)
 		{
 			if (File.Exists(filename))
 			{
@@ -98,14 +98,13 @@ namespace ProgrammingTech
 					}
 				}
 			}
-			return true;
 		}
 
-		public bool LoadData(string filename)
+		public void LoadData(string filename)
 		{
 			if (!File.Exists(filename))
 			{
-				return false;
+				throw new FileNotFoundException();
 			}
 			using (StreamReader sr = new StreamReader(filename))
 			{
@@ -119,7 +118,7 @@ namespace ProgrammingTech
 					else
 					{
 						//если нет такой записи, то это не те данные
-						return false;
+						throw new WrongFormatException();
 					}
 					Vehicle vehicle = null;
 					string key = string.Empty;
@@ -130,7 +129,7 @@ namespace ProgrammingTech
 						{
 							//начинаем новую парковку
 							key = line.Split(separator)[1];
-							parkingStages.Add(key, new Parking<Vehicle>(pictureWidth, pictureHeight));
+							parkingStages.Add(key, new Base<Vehicle>(pictureWidth, pictureHeight));
 							continue;
 						}
 						if (string.IsNullOrEmpty(line))
@@ -148,11 +147,10 @@ namespace ProgrammingTech
 						var result = parkingStages[key] + vehicle;
 						if (!result)
 						{
-							return false;
+							throw new FailedToLoadException();
 						}
 					}
 				}
-				return true;
 			}		
 		}
 	}
