@@ -77,24 +77,20 @@ namespace ProgrammingTech
 				{
 					//Начинаем парковку
 					sw.WriteLine($"Parking{separator}{level.Key}", sw);
-					ITransport vehicle = null;
-					for (int i = 0; (vehicle = level.Value.GetNext(i)) != null; i++)
+					//ITransport vehicle = null;
+					foreach(ITransport vehicle in level.Value)
 					{
-						if (vehicle != null)
+						//Записываем тип машины
+						if (vehicle.GetType().Name == "ArmoredVehicle")
 						{
-							//если место не пустое
-							//Записываем тип машины
-							if (vehicle.GetType().Name == "ArmoredVehicle")
-							{
-								sw.Write($"ArmoredVehicle{separator}", sw);
-							}
-							if (vehicle.GetType().Name == "Tank")
-							{
-								sw.Write($"Tank{separator}", sw);
-							}
-							//Записываемые параметры
-							sw.WriteLine(vehicle + "", sw);
+							sw.Write($"ArmoredVehicle{separator}", sw);
 						}
+						if (vehicle.GetType().Name == "Tank")
+						{
+							sw.Write($"Tank{separator}", sw);
+						}
+						//Записываемые параметры
+						sw.WriteLine(vehicle + "", sw);	
 					}
 				}
 			}

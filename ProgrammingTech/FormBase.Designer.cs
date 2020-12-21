@@ -45,6 +45,7 @@
             this.LoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonSort = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBoxTake.SuspendLayout();
             this.menuStrip.SuspendLayout();
@@ -213,6 +214,17 @@
             this.openFileDialog.FileName = "openFileDialog1";
             this.openFileDialog.Filter = "txt file | *.txt";
             // 
+            // buttonSort
+            // 
+            this.buttonSort.Location = new System.Drawing.Point(779, 280);
+            this.buttonSort.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.buttonSort.Name = "buttonSort";
+            this.buttonSort.Size = new System.Drawing.Size(88, 27);
+            this.buttonSort.TabIndex = 12;
+            this.buttonSort.Text = "Сортировать";
+            this.buttonSort.UseVisualStyleBackColor = true;
+            this.buttonSort.Click += new System.EventHandler(this.buttonSort_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -227,6 +239,7 @@
             this.Controls.Add(this.groupBoxTake);
             this.Controls.Add(this.pictureBoxParking);
             this.Controls.Add(this.menuStrip);
+            this.Controls.Add(this.buttonSort);
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FormParking";
@@ -260,5 +273,6 @@
 		private System.Windows.Forms.ToolStripMenuItem LoadToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog;
 		private System.Windows.Forms.OpenFileDialog openFileDialog;
-	}
+        private System.Windows.Forms.Button buttonSort;
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	public class Base<T> where T : class, ITransport
+	public class Base<T> : IEnumerator<T>, IEnumerable<T>
+		where T : class, ITransport
 	{
 		private readonly List<T> _places;
 		private readonly int _maxCount;
@@ -17,6 +19,10 @@ namespace ProgrammingTech
 
 		private readonly int _placeSizeWidth = 210;
 		private readonly int _placeSizeHeight = 80;
+
+		private int _currentIndex;
+		public T Current => _places[_currentIndex];
+		object IEnumerator.Current => _places[_currentIndex];
 
 		public Base(int picWidth, int picHeight)
 		{
@@ -33,6 +39,10 @@ namespace ProgrammingTech
 			if (p._places.Count >= p._maxCount)
 			{
 				throw new BaseOverflowException();
+			}
+			if (p._places.Contains(vehicle))
+			{
+				throw new BaseAlreadyHaveException();
 			}
 			p._places.Add(vehicle);
 			return true;
@@ -80,6 +90,33 @@ namespace ProgrammingTech
 				return null;
 			}
 			return _places[index];
+		}
+
+		public void Sort() => _places.Sort((IComparer<T>)new VehicleComparer());
+
+		public void Dispose()
+		{
+		}
+
+		public bool MoveNext()
+		{
+			_currentIndex++;
+			return _currentIndex < _places.Count;
+		}
+
+		public void Reset()
+		{
+			_currentIndex = -1;
+		}
+
+		public IEnumerator<T> GetEnumerator()
+		{
+			return this;
+		}
+
+		IEnumerator IEnumerable.GetEnumerator()
+		{
+			return this;
 		}
 	}
 }

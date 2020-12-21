@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProgrammingTech
 {
-	class ArmoredVehicle : Vehicle
+	class ArmoredVehicle : Vehicle, IEquatable<ArmoredVehicle>
 	{
 		protected readonly int carWidth = 100;
 		protected readonly int carHeight = 60;
@@ -93,5 +93,47 @@ namespace ProgrammingTech
 		{
 			return $"{MaxSpeed}{separator}{Weight}{separator}{MainColor.Name}";
 		}
+
+		public bool Equals(ArmoredVehicle other)
+		{
+			if (other == null)
+			{
+				return false;
+			}
+			if (GetType().Name != other.GetType().Name)
+			{
+				return false;
+			}
+			if (MaxSpeed != other.MaxSpeed)
+			{
+				return false;
+			}
+			if (Weight != other.Weight)
+			{
+				return false;
+			}
+			if (MainColor != other.MainColor)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		public override bool Equals(Object obj)
+		{
+			if (obj == null)
+			{
+				return false;
+			}
+			if (!(obj is ArmoredVehicle carObj))
+			{
+				return false;
+		    }
+			else
+			{
+				return Equals(carObj);
+			}
+		}
 	}
 }
+
