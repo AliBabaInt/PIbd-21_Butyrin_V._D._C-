@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace ProgrammingTech
 {
-	class Tank : ArmoredVehicle
+	class Tank : ArmoredVehicle, IEquatable<Tank>
 	{
 
 		public Color SecColor { private set; get; }
@@ -68,5 +68,41 @@ namespace ProgrammingTech
 			return $"{base.ToString()}{separator}{SecColor.Name}{separator}{Tower}{separator}{Camo}";
 		}
 
+		public bool Equals(Tank other)
+		{
+			if(base.Equals(other))
+			{
+				if (SecColor != other.SecColor)
+				{
+					return false;
+				}
+				if (Tower != other.Tower)
+				{
+					return false;
+				}
+				if (Camo != other.Camo)
+				{
+					return false;
+				}
+				return true;
+			}
+			else return false;
+		}
+
+		public override bool Equals(Object obj)
+		{
+			if (obj == null)
+			{
+		    return false;
+			}
+			if (!(obj is Tank carObj))
+			{
+				return false;
+			}
+			else
+			{
+				return Equals(carObj);
+			}
+		}
 	}
 }

@@ -193,6 +193,12 @@ namespace ProgrammingTech
 					MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK,
 				   MessageBoxIcon.Error);
 				}
+				catch (BaseAlreadyHaveException ex)
+				{
+					logger.Warn(ex.Message, "Дублирование");
+					MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK,
+				   MessageBoxIcon.Error);
+				}
 				catch (Exception ex)
 				{
 					logger.Warn(ex.Message, "Неизвестная ошибка");
@@ -246,6 +252,16 @@ namespace ProgrammingTech
 					MessageBox.Show(ex.Message, "Неизвестная ошибка при сохранении",
 				   MessageBoxButtons.OK, MessageBoxIcon.Error);
 				}
+			}
+		}
+
+		private void buttonSort_Click(object sender, EventArgs e)
+		{
+			if (listBoxParking.SelectedIndex > -1)
+			{
+				parkingCollection[listBoxParking.SelectedItem.ToString()].Sort();
+				Draw();
+				logger.Info("Сортировка уровней");
 			}
 		}
 	}
